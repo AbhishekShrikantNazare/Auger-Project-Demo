@@ -34,6 +34,7 @@ For those events, the orchestrator:
 ![Replay & Recovery](<images/Screenshot 2026-03-09 at 4.55.53 PM.png>)
 ![Explainability](<images/Screenshot 2026-03-09 at 4.56.31 PM.png>)
 ![Timeline Detail](<images/Screenshot 2026-03-09 at 4.56.53 PM.png>)
+![Docket Setup](<images/Screenshot 2026-03-09 at 5.11.39 PM.png>)
 
 ## Architecture
 
