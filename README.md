@@ -27,6 +27,14 @@ For those events, the orchestrator:
 5. Persists decision and simulated execution result
 6. If execution fails, writes a DLQ entry that can be replayed from the UI
 
+### Project Screenshots
+
+![Mission Control](<images/Screenshot 2026-03-09 at 4.55.12 PM.png>)
+![Policy Studio](<images/Screenshot 2026-03-09 at 4.55.38 PM.png>)
+![Replay & Recovery](<images/Screenshot 2026-03-09 at 4.55.53 PM.png>)
+![Explainability](<images/Screenshot 2026-03-09 at 4.56.31 PM.png>)
+![Timeline Detail](<images/Screenshot 2026-03-09 at 4.56.53 PM.png>)
+
 ## Architecture
 
 - **UI**: Next.js control tower
