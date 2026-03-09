@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ctk
+      POSTGRES_PASSWORD: ctk
+      POSTGRES_DB: ctk
+    ports:
+      - "5432:5432"
+    volumes:
+      - ctk_pg:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  decision:
+    build:
+      context: ./backend/decision-service
+    ports:
+      - "8000:8000"
+    environment:
+      - LOG_LEVEL=info
+
+  orchestrator:
+    build:
+      context: ./backend/orchestrator
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ctk
+      - SPRING_DATASOURCE_USERNAME=ctk
+      - SPRING_DATASOURCE_PASSWORD=ctk
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+      - DECISION_SERVICE_URL=http://decision:8000
+    depends_on:
+      - postgres
+      - redis
+      - decision
+
+  ui:
+    build:
+      context: ./frontend/control-tower
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_BASE=http://localhost:8080
+    depends_on:
+      - orchestrator
+
+volumes:
+  ctk_pg:
